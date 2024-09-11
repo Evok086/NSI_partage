@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <!-- En-tête de la page -->
+    <head>
+        <meta charset="utf-8">
+        <title>Parking de Nantes</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <!-- Corps de la page -->
+    <body>
+        <nav>
+            <h1>Ville de Nantes</h1>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/parking">Liste des parkings</a></li>
+                <li><a href="/adresse">Saisir adresse</a></li>
+            </ul>
+        </nav>
+        <form action="/proximite" method="get">
+            <div>
+                <label for="adresse">Saisir votre adresse :</label>
+                <input type="text" name="adr" id="adresse" placeholder="écrire ici" autocomplete="off" required>
+            </div>
+            <div>
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+    </body>
+</html>
