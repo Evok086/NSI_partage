@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <!-- En-tête de la page -->
+    <head>
+        <meta charset="utf-8">
+        <title>Parking de Nantes</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <!-- Corps de la page -->
+    <body>
+        <nav>
+            <h1>Ville de Nantes</h1>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/parking">Liste des parkings</a></li>
+                <li><a href="/adresse">Saisir adresse</a></li>
+            </ul>
+        </nav>
+        <table>
+            <tr>
+                <th></th>
+                {% for i in range(8) %}
+                <th>{{ 3*i+horaire }}h</th>
+                {% endfor %}
+            </tr>
+        {% for jour in meteo %}
+            <tr>
+                <th>{{ jour }}</th>
+                {% for i in range(8) %}
+                {% if 3*i+horaire in meteo[jour] %}
+                <td><img src="{{ meteo[jour][3*i+horaire][1] }}" alt="{{ meteo[jour][3*i+horaire][2] }}" title="{{ meteo[jour][3*i+horaire][2] }}"><br>{{ meteo[jour][3*i+horaire][0] }}°C</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </table>
+    </body>
+</html>
