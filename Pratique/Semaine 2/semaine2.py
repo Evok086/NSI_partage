@@ -1,28 +1,35 @@
 #ex1
 def fibonacci_v1(n):
-    nb = None
-    nb1 = 0
-    nb2 = 1
+    if n is not int:
+        print('Alors de base t\'es censé me donner un entier, dsl')
+        return None
+    U_n = None
+    précédent2 = 0
+    précédent1 = 1
     if n>2:
         for _ in range(n-2):
-            nb = nb1 + nb2
-            nb1 = nb2
-            nb2 = nb
+            U_n = précédent2 + précédent1
+            précédent2 = précédent1
+            précédent1 = U_n
     elif n == 2:
-        nb = nb2
+        U_n = précédent1
     elif n == 1:
-        nb = nb1
+        U_n = précédent2
     else:
-        return 'Heu, le nombre que t\'a rentré n\'est pas dans l\'intervale [1;+∞['
-    return nb
+        print('Heu, le nombre que t\'as rentré n\'est pas dans l\'intervale [1;+∞[')
+    return U_n
 
 def fibonacci_v2(n):
+    if n is not int:
+        print('Alors de base t\'es censé me donner un entier, dsl')
+        return None
     if n<1:
+        print('Heu, le nombre que t\'as rentré n\'est pas dans l\'intervale [1;+∞[')
         return None
     if n == 1:
         return [0]
     suite = [0,1]
-    for _ in range(n-3):
+    for _ in range(n-2):
         suite.append(suite[len(suite)-1] + suite[len(suite)-2])
     return suite
 
@@ -30,18 +37,22 @@ def tests_fibonacci():
     assert fibonacci_v1(1) == 0, 'le premier terme n\'est défini comme 0'
     assert fibonacci_v1(2) == 1, 'le deuxieme terme n\'est défini comme 1'
     assert fibonacci_v1(10) == 34, 'fibonacci_v1 de 10 devrait être = 34'
-    assert fibonacci_v1(-10) == 'Heu, le nombre que t\'a rentré n\'est pas dans l\'intervale [1;+∞['
+    assert fibonacci_v1(-10) == None
     
     assert fibonacci_v2(1) == [0], 'le premier terme n\'est défini comme 0'
     assert fibonacci_v2(2) == [0,1], 'le premier terme n\'est défini comme 0 et/ou le deuxieme terme n\'est défini comme 1'
-    assert fibonacci_v2(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21], 'fibonacci_v2 de 10 devrait être = [0, 1, 1, 2, 3, 5, 8, 13, 21]'
-    assert fibonacci_v2(-10) == None, 'fibonacci d\'un nb devrait être = None'
+    assert len(fibonacci_v2(10)) == 10, 'fibonacci_v2 de 10 devrait renvoyer un tableau de 10 valeurs'
+    assert fibonacci_v2(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34], 'fibonacci_v2 de 10 devrait être = [0, 1, 1, 2, 3, 5, 8, 13, 21]'
+    assert fibonacci_v2(-10) == None, 'fibonacci_v2 d\'un nb négatif devrait être = None'
     
 
 
 #ex2
 
 def Syracuse(n):
+    if n is not int:
+        print('Alors de base t\'es censé me donner un entier, dsl')
+        return None
     suite = [n]
     while n != 1:
         if n % 2 == 0:
@@ -52,11 +63,17 @@ def Syracuse(n):
     return suite
         
 def temps_vol(n):
+    if n is not int:
+        print('Alors de base t\'es censé me donner un entier, dsl')
+        return None
     if n <= 0:
         return None
     return len(Syracuse(n))-1
 
 def temps_vol_altitude(n):
+    if n is not int:
+        print('Alors de base t\'es censé me donner un entier, dsl')
+        return None
     if n <= 0:
         return None
     tps_de_vol = 0
@@ -67,6 +84,9 @@ def temps_vol_altitude(n):
     return None
         
 def altitude_max(n):
+    if n is not int:
+        print('Alors de base t\'es censé me donner un entier, dsl')
+        return None
     if n <= 0:
         return None
     maxi = 0
