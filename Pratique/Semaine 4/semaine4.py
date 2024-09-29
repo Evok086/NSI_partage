@@ -51,3 +51,21 @@ def extremum_v5(tab):
     return dico
     
 #2
+def dépouiller(urne):
+    dép = {}
+    for i in range(len(urne)):
+        if urne[i] not in dép:
+            dép[urne[i]] = 1
+        else:
+            dép[urne[i]] += 1
+    return dép
+
+def maximum_voix(voix):
+    maxi = voix[0]
+    gens = []
+    for i in range(len(voix)):
+        if voix[i]>maxi:
+            maxi = voix[i]
+            gens.append(voix[])
+        
+        
