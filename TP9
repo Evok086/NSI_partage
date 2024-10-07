@@ -31,15 +31,23 @@ def vider_pile(pile):
         Pile.depiler(pile)
         
 def renverser_pile(pile):
-    n = 0
     file = File()
     while not Pile.est_vide(pile):
-        n = Pile.depiler(pile)
-        File.enfiler(file, n)
+        File.enfiler(file, Pile.depiler(pile))
     while not File.est_vide(file):
-        n = File.defiler(file)
-        Pile.empiler(pile, n)
-    return pile
+        Pile.empiler(pile, File.defiler(file))
+
+def taille_pile(pile):
+    f = 0
+    Pil = Pile()
+    while not Pile.est_vide(pile):
+        Pile.empiler(Pil, Pile.depiler(pile))
+        f += 1
+    while not Pile.est_vide(Pil):
+        Pile.empiler(pile, Pile.depiler(Pil))
+    return f
+        
+        
         
 # question 2
 
@@ -70,3 +78,13 @@ print(ma_file)
 def vider_file(file):
     while not File.est_vide(file):
         File.defiler(file)
+        
+def taille_file(file):
+    f = 0
+    Fil = File()
+    while not File.est_vide(file):
+        File.enfiler(Fil, File.defiler(file))
+        f += 1
+    while not File.est_vide(Fil):
+        File.enfiler(file, File.defiler(Fil))
+    return f
