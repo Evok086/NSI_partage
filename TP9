@@ -1,0 +1,90 @@
+from pile import Pile
+from file import File
+
+# question 1
+
+ma_pile = Pile()
+print(Pile.est_vide(ma_pile))
+Pile.empiler(ma_pile, 5)
+Pile.empiler(ma_pile, 1)
+Pile.empiler(ma_pile, 9)
+print(ma_pile)
+print(Pile.empiler(ma_pile, 3))
+Pile.depiler(ma_pile)
+Pile.depiler(ma_pile)
+Pile.empiler(ma_pile, -7)
+Pile.empiler(ma_pile, 4)
+print(Pile.sommet(ma_pile))
+Pile.depiler(ma_pile)
+print(ma_pile)
+print(Pile.depiler(ma_pile))
+Pile.depiler(ma_pile)
+print(Pile.est_vide(ma_pile))
+Pile.empiler(ma_pile, 2)
+Pile.empiler(ma_pile, 7)
+Pile.depiler(ma_pile)
+print(ma_pile)
+
+
+def vider_pile(pile):
+    while not Pile.est_vide(pile):
+        Pile.depiler(pile)
+        
+def renverser_pile(pile):
+    file = File()
+    while not Pile.est_vide(pile):
+        File.enfiler(file, Pile.depiler(pile))
+    while not File.est_vide(file):
+        Pile.empiler(pile, File.defiler(file))
+
+def taille_pile(pile):
+    f = 0
+    Pil = Pile()
+    while not Pile.est_vide(pile):
+        Pile.empiler(Pil, Pile.depiler(pile))
+        f += 1
+    while not Pile.est_vide(Pil):
+        Pile.empiler(pile, Pile.depiler(Pil))
+    return f
+        
+        
+        
+# question 2
+
+ma_file = File()
+print(File.est_vide(ma_file))
+File.enfiler(ma_file, 5)
+File.enfiler(ma_file, 1)
+File.defiler(ma_file)
+File.enfiler(ma_file, 9)
+print(ma_file)
+print(File.enfiler(ma_file, 3))
+File.enfiler(ma_file, 4)
+File.defiler(ma_file)
+File.enfiler(ma_file, -5)
+print(File.avant(ma_file))
+File.enfiler(ma_file, 0)
+File.defiler(ma_file)
+print(ma_file)
+print(File.defiler(ma_file))
+File.defiler(ma_file)
+print(File.est_vide(ma_file))
+File.enfiler(ma_file, 2)
+File.enfiler(ma_file, 7)
+File.defiler(ma_file)
+print(ma_file)
+
+
+def vider_file(file):
+    while not File.est_vide(file):
+        File.defiler(file)
+        
+def taille_file(file):
+    f = 0
+    Fil = File()
+    while not File.est_vide(file):
+        File.enfiler(Fil, File.defiler(file))
+        f += 1
+    while not File.est_vide(Fil):
+        File.enfiler(file, File.defiler(Fil))
+    return f
