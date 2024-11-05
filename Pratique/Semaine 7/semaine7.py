@@ -32,4 +32,19 @@ def tri_comptage(n,tab1):
 # Ex 3
 
 def tri_01(tab):
-    
+    i = len(tab)
+    nb0 = 0
+    nb1 = 0
+    while i != 0:
+        if tab[nb0] == 1:
+            tab.append(1)
+            tab.pop(nb0)
+            nb1 += 1
+        else:
+            nb0 += 1
+        i -= 1
+    return tab
+
+# Ex 4
+
+def 
