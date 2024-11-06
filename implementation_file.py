@@ -130,15 +130,16 @@ class File_via_pile:
         self.pile_avant = Pile()
 
     def est_vide(self):
-        return self.pile_arriere.est_vide()
+        return self.pile_avant.est_vide() and self.pile_arriere.est_vide()
 
     def enfiler(self, element):
         self.pile_arriere.empiler(element)
 
     def _transvasement(self):
         assert self.pile_avant.est_vide(), "Le transvasement ne s'effectue que si la pile avant est vide"
-        while not self.pile_avant.est_vide():
-            self.pile_avant.empiler(self.pile_arriere.depiler())
+        while not self.pile_arriere.est_vide() :
+            self.pile_avant.empiler(self.pile_arriere.sommet())
+            self.pile_arriere.depiler()
 
     def avant(self):
         if self.pile_avant.est_vide():
@@ -146,11 +147,11 @@ class File_via_pile:
         return self.pile_avant.sommet()
 
     def defiler(self):
-        if self.pile_avant.est_vide() and not self.pile_arriere.est_vide():
+        if self.pile_avant.est_vide():
             self._transvasement()
-        self.pile_avant.depiler()
+        return self.pile_avant.depiler()
         
-ma_file = File_chainee()
+ma_file = File_via_pile()
 afficher_file(ma_file)
 ma_file.est_vide()
 ma_file.enfiler(-4)
