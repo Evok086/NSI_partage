@@ -129,3 +129,7 @@ def noir_et_blanc(image,k):
         nw_image.append(nw_ligne)
     return nw_image
 
+
+
+nsi = lire_image('nsi.png')
+construire_image(agrandir_image(negatif(nsi), 100), 'gris')
