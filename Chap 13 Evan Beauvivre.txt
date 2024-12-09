@@ -60,23 +60,41 @@ EX1:
 	FROM Auteur
 	JOIN Participe ON Participe.idA = Auteur.idA
 	JOIN Livre ON Livre.isbn = Participe.isbn
-	WHERE Livre.serie = 'Blake et Mortimer' AND Auteur.idA = 
-	(SELECT DISTINCT Auteur.idA 
-	FROM Auteur 
-	JOIN Participe ON Participe.idA = Auteur.idA 
-	JOIN Livre ON Livre.isbn = Participe.isbn 
-	WHERE Livre.serie = 'XIII')
+	WHERE Livre.serie = 'Blake et Mortimer' AND 
+	Auteur.idA IN 
+		(SELECT DISTINCT Auteur.idA 
+		FROM Auteur 
+		JOIN Participe ON Participe.idA = Auteur.idA 
+		JOIN Livre ON Livre.isbn = Participe.isbn 
+		WHERE Livre.serie = 'XIII')
 
-12)	SELECT Livre.serie, Livre.titre
-FROM Achete
-JOIN Livre ON Livre.isbn = Achete.isbn
-WHERE Achete.idC = 
+12)	SELECT DISTINCT Livre.serie, Livre.titre
+   	FROM Livre
+  	JOIN Achete ON Achete.isbn = Livre.isbn
+   	JOIN Client ON Client.idC = Achete.idC
+  	WHERE Client.prenom = 'Alice' AND 
+  	Livre.titre IN (SELECT DISTINCT Livre.titre
+	     FROM Livre
+	     JOIN Achete ON Achete.isbn = Livre.isbn
+             JOIN Client ON Client.idC = Achete.idC
+             WHERE Client.prenom = 'Bob');
 
-13)
+13)	UPDATE Client
+	SET courriel = "charles@nantes.fr"
+	WHERE prenom = "Charles";
+	UPDATE Client
+	SET ville = "Rennes"
+	WHERE prenom = "Alice"
 
-14)
+14)	UPDATE Livre
+	SET prix = prix * 0.95
+	WHERE serie = "XIII";
 
-15)
+15)	DELETE FROM Achete
+	WHERE idC = 2;
+	DELETE FROM Client
+	WHERE idC = 2;
 
-16)
-
+16)	INSERT INTO Livre(isbn,serie,titre,editeur,annee,prix)
+	VALUES (9782800159454,"Largo Winch","L'héritier","Dupuis",1990,15.95),
+	(9782800159461,"Largo Winch","Le groupe W","Dupuis",1990,15.95);
