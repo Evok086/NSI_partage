@@ -1,0 +1,82 @@
+Chap 13
+Evan Beauvivre
+EX1:
+
+1)	SELECT prenom, courriel
+	FROM Client;
+	
+2)	SELECT *
+	FROM Livre
+	WHERE annee = 2019;
+
+3) 	SELECT prenom, nom
+	FROM Auteur
+	WHERE nom LIKE 'D%r';
+	
+4)	SELECT DISTINCT MIN(annee)
+	FROM Livre
+	WHERE serie = 'Astérix';
+
+5)	SELECT Livre.titre
+	FROM Livre
+	JOIN Achete ON Achete.isbn = Livre.isbn
+	WHERE Achete.annee = 2019;
+
+6)	SELECT COUNT(Achete.idC)
+	FROM Achete
+	JOIN Client ON Client.idC = Achete.idC
+	WHERE Client.prenom = 'Charles';
+
+7)	SELECT ROUND(AVG(Livre.prix),2)
+	FROM Achete
+	JOIN Client ON Achete.idC = Client.idC
+	JOIN Livre ON Achete.isbn = Livre.isbn
+	WHERE Client.prenom = 'Charles';
+
+8)	SELECT SUM(Livre.prix)
+	FROM Achete
+	JOIN Client ON Achete.idC = Client.idC
+	JOIN Livre ON Achete.isbn = Livre.isbn
+	WHERE Client.prenom = 'Alice' AND Achete.annee = 2019;
+
+9)	SELECT DISTINCT Auteur.idA, Auteur.nom || ' ' || Auteur.prenom
+	FROM Livre
+	JOIN Participe ON Participe.isbn = Livre.isbn
+	JOIN Auteur ON Participe.idA = Auteur.idA
+	WHERE Livre.serie = 'Astérix'
+	ORDER BY Auteur.nom;
+
+10)	SELECT titre, serie
+	FROM Livre
+	WHERE annee = (SELECT MAX(annee)
+			FROM Livre);
+11) a.	SELECT DISTINCT Auteur.idA
+	FROM Auteur
+	JOIN Participe ON Participe.idA = Auteur.idA
+	JOIN Livre ON Livre.isbn = Participe.isbn
+	WHERE Livre.serie = 'XIII';
+
+    b.	SELECT DISTINCT Auteur.prenom, Auteur.nom
+	FROM Auteur
+	JOIN Participe ON Participe.idA = Auteur.idA
+	JOIN Livre ON Livre.isbn = Participe.isbn
+	WHERE Livre.serie = 'Blake et Mortimer' AND Auteur.idA = 
+	(SELECT DISTINCT Auteur.idA 
+	FROM Auteur 
+	JOIN Participe ON Participe.idA = Auteur.idA 
+	JOIN Livre ON Livre.isbn = Participe.isbn 
+	WHERE Livre.serie = 'XIII')
+
+12)	SELECT Livre.serie, Livre.titre
+FROM Achete
+JOIN Livre ON Livre.isbn = Achete.isbn
+WHERE Achete.idC = 
+
+13)
+
+14)
+
+15)
+
+16)
+
