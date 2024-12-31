@@ -71,9 +71,9 @@ assert est_cyclique_v2(plan_b) == True
 
 # Ex 3
 
-def select_date(mat,date):
+def select_date(tab_i,date):
     tab = []
-    for reservation in mat:
+    for reservation in tab_i:
         if reservation['date'] == date:
             dico = {'nom':reservation['nom'],'nb_pers':reservation['nb_pers'],'matin':reservation['matin']}
             tab.append(dico)
@@ -83,7 +83,7 @@ reservations = [{'nom': 'Dupont', 'date': '2022-11-11', 'nb_pers': 2, 'matin': T
 {'nom': 'Dupont', 'date': '2022-11-12', 'nb_pers': 2, 'matin': True},
 {'nom': 'Dupond', 'date': '2022-11-11', 'nb_pers': 3, 'matin': False},
 {'nom': 'Toto', 'date': '2022-11-12', 'nb_pers': 1, 'matin': True}]
-assert select_date(reservations, '2022-11-11') == [{'nom': 'Dupont', 'nb_pers': 2, 'matin': True}, {'nom': 'Dupond', 'nb_pers': 3, 'matin': False}]
+assert select_date(reservations, '2022-11-11') == [{'nom': 'Dupont','nb_pers': 2, 'matin': True}, {'nom': 'Dupond', 'nb_pers': 3, 'matin': False}]
 
 
 reservations = [{'nom': 'Dupont', 'date': '2022-11-11', 'nb_pers': 2, 'matin': True},
@@ -129,7 +129,12 @@ def agrandir_image(image,k):
             nw_image.append(nw_ligne)
     return nw_image
 
-assert agrandir_image([[15, 0, 200], [180, 86, 78]], 3) ==[[15, 15, 15, 0, 0, 0, 200, 200, 200], [15, 15, 15, 0, 0, 0, 200, 200, 200], [15, 15, 15, 0,0, 0, 200, 200, 200], [180, 180, 180, 86, 86, 86, 78, 78, 78], [180, 180, 180, 86, 86,86, 78, 78, 78], [180, 180, 180, 86, 86, 86, 78, 78, 78]]
+assert agrandir_image([[15, 0, 200], [180, 86, 78]], 3) == [[15,  15,  15,   0,  0, 0, 200, 200, 200],
+                                                            [15,  15,  15,   0,  0, 0, 200, 200, 200],
+                                                            [15,  15,  15,   0,  0, 0, 200, 200, 200],
+                                                            [180, 180, 180, 86, 86, 86, 78,  78,  78],
+                                                            [180, 180, 180, 86, 86, 86, 78,  78,  78],
+                                                            [180, 180, 180, 86, 86, 86, 78,  78,  78]]
 
 
 def negatif(image):
@@ -159,6 +164,9 @@ def noir_et_blanc(image,k):
 assert noir_et_blanc([[15, 0, 200], [180, 86, 78]], 87) == [[0, 0, 1], [1, 0, 0]]
 assert noir_et_blanc([[15, 0, 200], [180, 86, 78]], 86) == [[0, 0, 1], [1, 1, 0]]
 
-
-def affiche():
+def tests():
     construire_image(agrandir_image(negatif(nsi), 100), 'gris')
+    construire_image(nsi, 'gris')
+    construire_image(agrandir_image(nsi, 40), 'gris')
+    construire_image(agrandir_image(negatif(nsi), 40), 'gris')
+    construire_image(agrandir_image(noir_et_blanc(nsi, 15), 40), 'noir&blanc')
