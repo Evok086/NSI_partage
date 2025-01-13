@@ -54,19 +54,22 @@ def acceder(lst, k):
     if k == 1:
         return tete(lst)
     return acceder(queue(lst), k-1)
-    """var = lst
+    '''var = lst
     if est_vide(lst):
         return None
     for _ in range(k-1):
         var = queue(var)
-    return tete(var)"""
+    return tete(var)'''
     
-def modifier(lst, i, val,k=0):
-    n = 0
-    liste = creer_liste_vide()
+def modifier(lst, i, val,k=0, liste=[]):
+    if est_vide(lst):
+        return liste
     if tete(lst) == val:
-        liste.ajouter_tete(liste, val)
-    if k == i:
+        ajouter_tete(liste, val)
+    else:
+        ajouter_tete(liste, acceder(lst, k))
+    return modifier(lst, i, val, k+1, liste)
+        
     '''for l in range(k+1):
         liste = ajouter_tete(lst, acceder(lst, l))
         if l == i:
